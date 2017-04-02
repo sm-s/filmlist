@@ -5,8 +5,8 @@
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li><?= $this->Form->postLink(
-                __('Delete role'),
+        <li class="delete"><?= $this->Form->postLink(
+                __('Delete this role permanently'),
                 ['action' => 'delete', $role->id],
                 ['confirm' => __('Are you sure you want to delete role: {0}?', $role->description)]
             )
@@ -14,7 +14,7 @@
 
     </ul>
 </nav>
-<div class="roles form large-9 medium-8 columns content">
+<div class="smallForm">
     <?= $this->Form->create($role) ?>
     <fieldset>
         <legend><?= __('Edit role') ?></legend>

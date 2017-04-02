@@ -15,13 +15,12 @@ $userID = $session->read('userid');
     <ul class="side-nav">
         <?php // admins can delete any user account, others can only delete their own accounts 
         if ($isAdmin || ($userID == $user->id)) { ?>
-        <li class="delete">
-            
-            if ($isAdmin || ($userID == $user->id)) { ?>
+        <li id="delete">
             <?= $this->Form->postLink(__('Delete user account permanently'),
             ['action' => 'delete', $user->id],
                 ['confirm' => __('Are you sure you want to delete user: {0}?', $user->username)])?></li>
-        <?php } ?>    
+        <?php } ?>
+    </ul>    
 </nav>
 
 <div class="smallForm">
@@ -31,11 +30,8 @@ $userID = $session->read('userid');
         <?php
             echo $this->Form->control('username');
             echo $this->Form->control('email');
-            if ($isAdmin) { ?>
-        <h6 class="adminsOnly"><?= __('Admins only') ?></h6>
-                <?php 
+            if ($isAdmin) { 
                 echo $this->Form->control('password');
-     
                 echo $this->Form->input('roles._ids', ['options' => $roles, 
                     'type' => 'select', 'multiple' => 'checkbox']);
             }

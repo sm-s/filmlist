@@ -49,8 +49,7 @@ $cakeDescription = 'Filmlist';
         </ul>    
         <ul class="title-area large-3 medium-4 columns">
             <li class="name">
-                <h1>
-                <?= $this->fetch('title') ?></h1>
+                <h1><?= $this->fetch('title') ?></h1>
             </li>
         </ul>
         <div class="top-bar-section">
@@ -72,10 +71,9 @@ $cakeDescription = 'Filmlist';
                 else {
                     $username = $session->read('username');
                     $id = $this->request->session()->read('userid');?>
-                    <li style="padding:0.5em;"><?= h($username) ?></li>
                     <li><?= $this->Html->link(__('View your profile'), ['controller' => 'Users', 'action' => 'view', $id ]) ?></li>
                     <li><?= $this->Html->link(__('Log out'), ['controller' => 'Users', 'action' => 'logout']) ?></li>
-                <? } ?>     
+                    <?php } ?>     
             </ul>
         </div>
     </nav>

@@ -124,6 +124,10 @@ class ReviewsController extends AppController
     
     public function isAuthorized($user)
     {
+        $admin = 1;
+        $moderator = 3;
+        $filmReviewer = 4;
+        
         $query = TableRegistry::get('Roles_users')
                 ->find()
            	->select(['role_id']) 
@@ -132,16 +136,16 @@ class ReviewsController extends AppController
         if (!empty($query)) {    
             foreach($query as $temp) {
                 // admins and moderators
-                if ($temp['role_id'] === 1 || $temp['role_id'] === 3) {
+                if ($temp['role_id'] === $admin || $temp['role_id'] === $moderator) {
                     return True;
                 }
                 // film reviewers
-                if (($temp['role_id'] === 4)) {
+                if (($temp['role_id'] === $filmReviewer)) {
                     if ($this->request->getParam('action') === 'add') {
                         return True;
                     }
                 }
-                // moderators
+                // users can edit their own reviews
                 $id = $this->request->session()->read('userid');
                 if ($id === $user['id']) {
                     if ($this->request->getParam('action') === 'edit') {

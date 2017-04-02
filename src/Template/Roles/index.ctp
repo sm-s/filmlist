@@ -8,17 +8,15 @@ $session = $this->request->session();
 $isAdmin = $session->read('isAdmin');
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav"></ul>
+    <ul class="side-nav">
+        <li><?= $this->Html->link(__('Add a new role'), ['action' => 'add']) ?></li>
+    </ul>
 </nav>
 <div class="roles index large-9 medium-8 columns content">
     <?php if (!$isAdmin) { ?>
         <?= __('Dead end.') ?>
         <?= $this->Html->link(__('Go to reviews instead.'), ['controller' => 'Reviews','action' => 'index']) ?>
     <?php } else { ?>
-        <ul class="myLinks">
-                <li><?= $this->Html->link(__('Add a new role'), ['action' => 'add']) ?></li>
-        </ul>
-        
         <h3><?= __('Roles') ?></h3>
         <table cellpadding="0" cellspacing="0">
             <thead>
@@ -34,7 +32,7 @@ $isAdmin = $session->read('isAdmin');
                     <td><?= $this->Number->format($role->id) ?></td>
                     <td><?= $this->Html->link(__(h($role->description)), ['action' => 'view', $role->id]) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $role->id]) ?>
+                        <?= $this->Html->link(__('Edit role'), ['action' => 'edit', $role->id]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

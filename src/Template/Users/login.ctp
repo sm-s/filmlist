@@ -7,7 +7,6 @@
     <ul class="side-nav">
     </ul>
 </nav>
-<!--<div class="users form large-4 medium-4 columns content">-->
 <div class="smallForm">   
 <?= $this->Flash->render() ?>
 <?= $this->Form->create() ?>

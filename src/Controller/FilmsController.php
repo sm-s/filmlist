@@ -117,6 +117,9 @@ class FilmsController extends AppController
     
     public function isAuthorized($user)
     {
+        $admin = 1;
+        $dataAdmin = 2;
+        
         $query = TableRegistry::get('Roles_users')
                 ->find()
            	->select(['role_id']) 
@@ -125,7 +128,7 @@ class FilmsController extends AppController
         if (!empty($query)) {    
             foreach($query as $temp) {
                 // admins and data admins
-                if ($temp['role_id'] === 1 || $temp['role_id'] === 2) {
+                if ($temp['role_id'] === $admin || $temp['role_id'] === $dataAdmin) {
                     return True;
                 }
             }

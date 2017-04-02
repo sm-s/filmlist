@@ -11,11 +11,9 @@ $isModerator = $session->read('isModerator');
 $isFilmReviewer = $session->read('isFilmReviewer');
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav"></ul>
 </nav>
 <div class="reviews index large-9 medium-8 columns content">
     <h3><?= __('All reviews') ?></h3>
-
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>

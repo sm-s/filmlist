@@ -72,7 +72,12 @@ class UsersTable extends Table
 
         $validator
             ->requirePresence('password', 'create')
-            ->notEmpty('password');
+            ->notEmpty('password')
+            ->add('password', [
+                    'length' => [
+                        'rule' => ['minLength', 10],
+                        'message' => 'The minimum length for password is 10 characters.']
+                ]);
 
         $validator
             ->date('created_at')

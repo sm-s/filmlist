@@ -9,19 +9,17 @@ $isAdmin = $session->read('isAdmin');
 $isModerator = $session->read('isModerator')
         ;?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav"></ul>
+    <ul class="side-nav">
+    <?php if($isAdmin) { ?>
+        <li><?= $this->Html->link(__('Add a new user'), ['action' => 'add']) ?></li>
+    <?php } ?>
+    </ul>
 </nav>
 <div class="users index large-9 medium-8 columns content">
     <?php if (!($isAdmin || $isModerator)) {?>
         <?= __('Dead end.') ?>
         <?= $this->Html->link(__('Go to reviews instead.'), ['controller' => 'Reviews','action' => 'index']) ?>
-    <?php } else { 
-        if($isAdmin) { ?>
-            <ul class="myLinks">
-                <li><?= $this->Html->link(__('Add a new user'), ['action' => 'add']) ?></li>
-            </ul>
-        <?php } ?>
-    
+    <?php } else { ?>
     <h3><?= __('Users') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
@@ -29,8 +27,8 @@ $isModerator = $session->read('isModerator')
                 <th scope="col"><?= $this->Paginator->sort('username') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('email') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created_at') ?></th>
-                <?php if ($isModerator || $isAdmin) { ?>
-                    <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <?php if ($isAdmin) { ?>
+                    <th scope="col"></th>
                 <?php } ?> 
             </tr>
         </thead>
@@ -42,7 +40,7 @@ $isModerator = $session->read('isModerator')
                 <td><?= $this->Html->link(__(h($user->username)), ['action' => 'view', $user->id]) ?> </td>
                 <td><?= h($user->email) ?></td>
                 <td><?= h($user->created_at->format('d.m.Y')) ?></td>
-                <?php if ($isModerator || $isAdmin) { ?>
+                <?php if ($isAdmin) { ?>
                 <td class="actions">
                     <?= $this->Html->link(__('Edit user'), ['action' => 'edit', $user->id]) ?>
                 </td>

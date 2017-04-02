@@ -10,20 +10,14 @@ $isDataAdmin = $session->read('isDataAdmin');
 $isModerator = $session->read('isModerator');
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav"></ul>
+    <ul class="side-nav">
+    <?php if ($isAdmin || $isDataAdmin) { ?>
+        <li><?= $this->Html->link(__('Add a new film'), ['action' => 'add']) ?></li>
+    <?php } ?>
+    </ul>
 </nav>
 <div class="films index large-9 medium-8 columns content">
-    <?php if ($isAdmin || $isDataAdmin) { ?>
-    <ul class="myLinks">
-        <li><?= $this->Html->link(__('Add a new film'), ['action' => 'add']) ?></li>
-    </ul>
-    <?php } 
-    if ($isAdmin || $isDataAdmin || $isModerator) {
 
-        
-        
-    }
-?>
     <h3><?= __('Films') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>

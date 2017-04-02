@@ -12,10 +12,9 @@ $isFilmReviewer = $session->read('isFilmReviewer');
 $userID = $session->read('userid');
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-    </ul>
+    <ul class="side-nav"></ul>
 </nav>
-<div class="smallForm">
+<div class="smallForm"> 
     <?= $this->Form->create($user) ?>
     <fieldset>
         <legend><?= __('Change password') ?></legend>
@@ -24,8 +23,7 @@ $userID = $session->read('userid');
                 'value' => '', 'id' => 'key', 'empty']);
             echo $this->Form->input('newPassword', 
                     array('label' => 'Retype the new password', 'value' => '', 
-                        'required' => true, 'type' => 'password', 'empty'));
-        ?>
+                        'required' => true, 'type' => 'password', 'empty')); ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>

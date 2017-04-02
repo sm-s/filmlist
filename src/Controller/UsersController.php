@@ -15,8 +15,6 @@ class UsersController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        //$this->Auth->allow('signup', 'logout');
-        
         $this->Auth->allow(['signup', 'logout']);
     }
     
@@ -67,15 +65,14 @@ class UsersController extends AppController
             $user = $this->Users->patchEntity($user, $newUser);
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('Sign up completed. Now you can log in.'));
-                return $this->redirect(['controller' => 'Reviews', 'action' => 'index']);
-           }
-
-            $this->Flash->error(__('Something went wrong. Please, try again.'));
+                return $this->redirect(['action' => 'login']);
+            }
+            else {    
+                $this->Flash->error(__('Something went wrong. Please, try again.'));
+            }
         }
         $roles = $this->Users->Roles->find('list', ['limit' => 200]);
-        /*$roles = $this->Users->Roles->find('list', [
-            'conditions' => ['Roles.id LIKE' => '4']
-        ]);*/
+
         $this->set(compact('user', 'roles'));
         $this->set('_serialize', ['user']);
     }
@@ -139,7 +136,6 @@ class UsersController extends AppController
             if ($this->request->data['password'] == $this->request->data['newPassword']) {
                 if ($this->Users->save($user)) {
                     $this->Flash->success(__('The user has been saved.'));
-
                     return $this->redirect(['action' => 'index']);
                 }
                 else {
@@ -148,31 +144,13 @@ class UsersController extends AppController
             }    
             else {
                 $this->Flash->error(__('The passwords do not match.'));
-            }    
-                
+            }         
         }
         $roles = $this->Users->Roles->find('list', ['limit' => 200]);
         $this->set(compact('user', 'roles'));
         $this->set('_serialize', ['user']);
     }
-    public function profile($id = null)
-    {
-        $user = $this->Users->get($id, [
-            'contain' => ['Roles']
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
-        }
-        $roles = $this->Users->Roles->find('list', ['limit' => 200]);
-        $this->set(compact('user', 'roles'));
-        $this->set('_serialize', ['user']);
-    }
+    
     /**
      * Delete method
      *
@@ -248,7 +226,6 @@ class UsersController extends AppController
         $this->request->session()->delete('isFilmReviewer');
         $this->request->session()->destroy();
         
-        
         $this->Flash->success('Log out completed.');
         return $this->redirect($this->Auth->logout());
 
@@ -257,8 +234,6 @@ class UsersController extends AppController
     public function isAuthorized($user)
     {
         $admin = 1;
-        $moderator = 3;
-        
         $id = $this->request->getParam('pass');
 
         $queryForRoles = TableRegistry::get('Roles_users')
@@ -272,21 +247,13 @@ class UsersController extends AppController
                 if ($temp['role_id'] == $admin) {
                     return True;
                 }
-                
-                if ($temp['role_id'] == $moderator) {
-                    if ($this->request->getParam('action') === 'edit') {
-                        return True;
-                    }
-                }
             }    
         }
-  
         // users can log out    
         if ($this->request->getParam('action') === 'logout') {
             return True;
         }
-       
-        // users can view and  edit their own profiles
+        // users can view and edit their own profiles
         if (($this->request->getParam('action') === 'view') 
                 || ($this->request->getParam('action') === 'edit')
                 || ($this->request->getParam('action') === 'changepassword')
@@ -294,7 +261,6 @@ class UsersController extends AppController
             if ($id[0] == $user['id']) {
                 return True;
             }
-
         }
     } 
 }

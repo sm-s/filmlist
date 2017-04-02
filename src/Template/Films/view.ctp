@@ -11,14 +11,17 @@ $isModerator = $session->read('isModerator');
 $isFilmReviewer = $session->read('isFilmReviewer');
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav"></ul>
+    <ul class="side-nav">
+    <?php if ($isAdmin || $isDataAdmin) { ?>
+        <li><?= $this->Html->link(__('Edit film'), ['action' => 'edit', $film->id]) ?></li>
+    <?php } ?>
+        <li><?= $this->Html->link(__('Write a review!'), 
+                ['controller' => 'Reviews', 'action' => 'add', $film->id, $film->title]) ?> </li>
+    </ul>
 </nav>
 <div class="films view large-9 medium-8 columns content">
-    <?php if ($isAdmin || $isDataAdmin) { ?>
-        <h3><?= h($film->title) ?><?= $this->Html->link(__(' edit'), ['action' => 'edit', $film->id]) ?></h3>
-    <?php } else { ?>
-        <h3><?= h($film->title) ?></h3>
-     <?php } ?>
+    <h3><?= h($film->title) ?></h3>
+
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('Year') ?></th>
@@ -33,11 +36,8 @@ $isFilmReviewer = $session->read('isFilmReviewer');
             <th scope="row"><?= __('Summary') ?></th>
             <td><?= ($film->summary) ?></td>
         </tr>
-
     </table>
-    <ul class="myLinks">
-        <li><?= $this->Html->link(__('Write a review!'), ['controller' => 'Reviews', 'action' => 'add', $film->id, $film->title]) ?> </li>
-    </ul>
+    
     <div class="related">
         <h4><?= __('Reviews') ?></h4>
         <?php if (!empty($film->reviews)): ?>

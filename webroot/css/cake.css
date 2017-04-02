@@ -13,6 +13,7 @@ a {
 }
 
 .side-nav li a:not(.button) {
+    border: 1px solid orange;
     color: #15848F;
 }
 
@@ -336,14 +337,16 @@ pre {
 
 .top-bar.expanded, .top-bar,.top-bar-section ul li,.top-bar-section li:not(.has-form) a:not(.button) {
     /* background: #116d76; */
-    background-color: gray; 
+    background-color: gray;
+    font-size: 15px;
 }
 
 .top-bar-section li:not(.has-form) a:not(.button):hover {
     /*background-color: #308e97;
     background: #308e97;*/
     background-color: orange;
-    background: orange;    
+    background: orange;
+    font-size: 15px;
 }
 
 .side-nav li.heading {
@@ -556,29 +559,7 @@ textarea {
     resize: vertical; 
 }
 
-.delete {
-    border: 2px dotted;
-    border-color: black;
-    float: left;
-}
-
-.myLinks {
-    padding-top: 1em;
-
-}
-.myLinks li {
-    list-style: none;
-    color: #15848F;
-}
-
-.myLinks li a:not(.button):hover {
-    /*color: #15848F;*/
-    color: orange;
-}
-
-.adminsOnly {
-    margin-top: 3em;
-    font-weight: 300;
-    color: #15848F;
-    border-bottom: 2px solid orange;
+#delete a:not(.button):hover {
+    border: 2px solid red;
+    color: black;
 }

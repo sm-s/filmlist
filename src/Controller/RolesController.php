@@ -111,16 +111,7 @@ class RolesController extends AppController
     
     public function isAuthorized($user)
     {
-
-/*
-        $isAdmin = $this->request->session()->read('isAdmin');
-        if ($isAdmin) {
-            if ( $this->request->action === 'index' || $this->request->action === 'view') {
-                return True; 
-            }
-        }
-
- */      
+        $admin = 1;
         $query = TableRegistry::get('Roles_users')
                 ->find()
            	->select(['role_id']) 
@@ -128,15 +119,10 @@ class RolesController extends AppController
                 ->toArray();
         if (!empty($query)) {    
             foreach($query as $temp) {
-                // admins
-                if ($temp['role_id'] === 1) {
+                if ($temp['role_id'] === $admin) {
                     return True;
-                }
-                else {
-                    return False;
                 }
             }
         }
-        //return False;
     } 
 }

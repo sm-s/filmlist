@@ -12,16 +12,21 @@ $isFilmReviewer = $session->read('isFilmReviewer');
 $userID = $session->read('userid');
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
-        <ul class="myLinks">
-        <?php // admins can delete any user account, others can only delete their own accounts 
-        if ($isAdmin || ($user->id == $userID)) { ?>
-               
-        <?php } ?>
-    </ul>
+    <ul class="side-nav">
+    <?php if ($isAdmin || ($userID == $user->id)) { ?>
+        <li><?= $this->Html->link(__('Edit user profile'), ['action' => 'edit', $user->id]) ?></li>
+        <li><?= $this->Html->link(__('Change password'), ['action' => 'changepassword', $user->id]) ?></li>
+    <?php } ?>    
+    </ul> 
 </nav>
 <div class="users view large-9 medium-8 columns content">
-    <?php if ($isAdmin || $isModerator || ($userID == $user->id)) { ?>
-    <h3><?= h($user->username) ?><?= $this->Html->link(__(' edit user account - '), ['action' => 'edit', $user->id]) ?> <?= $this->Html->link(__('change password'), ['action' => 'changepassword', $user->id]) ?></h3>
+  
+    <?php
+    if ($isModerator && (!($userID == $user->id))) { ?>
+    <h3><?= h($user->username) ?></h3>
+    <?php } 
+    if ($isAdmin || $isModerator || ($userID == $user->id)) { ?>
+    <h3><?= h($user->username) ?></h3>
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('Role') ?></th>
@@ -35,7 +40,7 @@ $userID = $session->read('userid');
             <?php endif; ?>
         </tr>
         <tr>
-            <th scope="row"><?= __('Since') ?></th>
+            <th scope="row"><?= __('Created on') ?></th>
             <td><?= h($user->created_at->format('d.m.Y')) ?></td>
         </tr>
         <tr>
