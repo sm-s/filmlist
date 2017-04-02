@@ -21,9 +21,11 @@
             echo $this->Form->control('title');
             echo $this->Form->control('year');
             echo $this->Form->control('director');
-            echo $this->Form->control('genre');
+            echo $this->Form->control('summary');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
 </div>
+  <script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+  <script>tinymce.init({ selector:'textarea' });</script>

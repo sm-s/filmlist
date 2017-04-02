@@ -51,7 +51,7 @@ legend {
 }
 
 .actions.columns h3 {
-    color:#15848F;
+   color: #15848F;
 }
 
 .related table {
@@ -355,7 +355,7 @@ pre {
 }
 
 #actions-sidebar {
-    background: #fafafa;
+    background: white;
 }
 
 .index table {
@@ -418,12 +418,12 @@ fieldset legend {
 
 .form button:hover, .form button:focus, 
 .smallForm button:hover, .smallForm button:focus {
-    background: #BE840B;
+    background: orange;
     box-shadow: none;
 }
 
 button {
-    background: #966600;
+    background: #15848F;
 }
 
 div.message {
@@ -574,4 +574,11 @@ textarea {
 .myLinks li a:not(.button):hover {
     /*color: #15848F;*/
     color: orange;
+}
+
+.adminsOnly {
+    margin-top: 3em;
+    font-weight: 300;
+    color: #15848F;
+    border-bottom: 2px solid orange;
 }

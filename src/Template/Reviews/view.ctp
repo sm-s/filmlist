@@ -20,12 +20,9 @@ $isFilmReviewer = $session->read('isFilmReviewer');
     <?php } else { ?>
         <h3><?= h($review->film->title) ?></h3>
      <?php } ?>
-    <ul class="myLinks">
-        <li><?= $this->Html->link(__('Write a review on '), ['action' => 'add', $review->film_id, $review->film->title]) ?> <?= h($review->film->title)?> </li>
-    </ul>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('Reviewed on') ?></th>
+            <th scope="row"><?= __('Created on') ?></th>
             <td><?= h($review->created_at->format('d.m.Y')) ?></td>
         </tr>
         <tr>
@@ -41,4 +38,7 @@ $isFilmReviewer = $session->read('isFilmReviewer');
             <td><?= h($review->body) ?></td>
         </tr>
     </table>
+    <ul class="myLinks">
+        <li><?= $this->Html->link(__('Write a review!'), ['action' => 'add', $review->film_id, $review->film->title]) ?></li>
+    </ul>
 </div>

@@ -63,8 +63,8 @@ class AppController extends Controller
                 'action' => 'index'
             ],
             'logoutRedirect' => [
-                'controller' => 'Reviews',
-                'action' => 'index'
+                'controller' => 'Users',
+                'action' => 'login'
             ]
         ]);
 

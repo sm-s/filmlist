@@ -64,7 +64,7 @@ class FilmsTable extends Table
             ->allowEmpty('director');
 
         $validator
-            ->allowEmpty('genre');
+            ->allowEmpty('summary');
 
         return $validator;
     }

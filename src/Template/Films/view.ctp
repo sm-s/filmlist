@@ -29,8 +29,9 @@ $isFilmReviewer = $session->read('isFilmReviewer');
             <td><?= h($film->director) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Genre') ?></th>
-            <td><?= h($film->genre) ?></td>
+            <?php // summary is not sanitized due to use of TinyMCE ?>
+            <th scope="row"><?= __('Summary') ?></th>
+            <td><?= ($film->summary) ?></td>
         </tr>
 
     </table>

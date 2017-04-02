@@ -12,7 +12,6 @@ $isFilmReviewer = $session->read('isFilmReviewer');
 $userID = $session->read('userid');
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
-            </ul>
         <ul class="myLinks">
         <?php // admins can delete any user account, others can only delete their own accounts 
         if ($isAdmin || ($user->id == $userID)) { ?>

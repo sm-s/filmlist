@@ -13,8 +13,10 @@ $userID = $session->read('userid');
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
+        <?php // admins can delete any user account, others can only delete their own accounts 
+        if ($isAdmin || ($userID == $user->id)) { ?>
         <li class="delete">
-            <?php // admins can delete any user account, others can only delete their own accounts 
+            
             if ($isAdmin || ($userID == $user->id)) { ?>
             <?= $this->Form->postLink(__('Delete user account permanently'),
             ['action' => 'delete', $user->id],
@@ -29,12 +31,13 @@ $userID = $session->read('userid');
         <?php
             echo $this->Form->control('username');
             echo $this->Form->control('email');
-            if ($isAdmin) {
+            if ($isAdmin) { ?>
+        <h6 class="adminsOnly"><?= __('Admins only') ?></h6>
+                <?php 
                 echo $this->Form->control('password');
-            }           
-            //echo $this->Form->control('created_at', ['empty' => true]);
-            if ($isAdmin) {
-                echo $this->Form->control('roles._ids', ['options' => $roles]);
+     
+                echo $this->Form->input('roles._ids', ['options' => $roles, 
+                    'type' => 'select', 'multiple' => 'checkbox']);
             }
         ?>
     </fieldset>

@@ -34,7 +34,8 @@ class ReviewsTable extends Table
         parent::initialize($config);
 
         $this->setTable('reviews');
-        $this->setDisplayField('title');
+        //$this->setDisplayField('title');
+        $this->setDisplayField('body');
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Films', [
@@ -59,8 +60,8 @@ class ReviewsTable extends Table
             ->integer('id')
             ->allowEmpty('id', 'create');
 
-        $validator
-            ->allowEmpty('title');
+        //$validator
+        //    ->allowEmpty('title');
 
         $validator
             ->allowEmpty('body');

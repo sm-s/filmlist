@@ -23,8 +23,6 @@ $isFilmReviewer = $session->read('isFilmReviewer');
                 <th scope="col"></th>
                 <th scope="col" style="text-align: center;"><?= $this->Paginator->sort('rating') ?></th>
                 <th scope="col" colspan="3"><?= $this->Paginator->sort('film_id') ?></th>
-                
-                
                 <th scope="col"><?= __('Reviewed by') ?></th>
                 <!--<th scope="col"><?= $this->Paginator->sort('user_id') ?></th>-->   
                 <!--<th scope="col"><?= $this->Paginator->sort('is_public') ?></th>-->
