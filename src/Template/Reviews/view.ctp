@@ -14,7 +14,7 @@ $isFilmReviewer = $session->read('isFilmReviewer');
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class='side-nav'>
     <?php if (($isAdmin || $isModerator) || ($userID == $review->user_id)) { ?>
-        <li><?= $this->Html->link(__('Edit review'), ['action' => 'edit', $review->id]) ?></li>
+        <li><?= $this->Html->link(__('Edit this review'), ['action' => 'edit', $review->id]) ?></li>
     <?php } 
     if ($isAdmin || $isModerator || $isFilmReviewer) { ?>
         <li><?= $this->Html->link(__('Write a review!'), 

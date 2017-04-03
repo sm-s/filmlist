@@ -13,10 +13,12 @@ $isFilmReviewer = $session->read('isFilmReviewer');
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
     <?php if ($isAdmin || $isDataAdmin) { ?>
-        <li><?= $this->Html->link(__('Edit film'), ['action' => 'edit', $film->id]) ?></li>
-    <?php } ?>
+        <li><?= $this->Html->link(__('Edit this film'), ['action' => 'edit', $film->id]) ?></li>
+    <?php } 
+    if ($isAdmin || $isModerator || $isFilmReviewer) { ?>
         <li><?= $this->Html->link(__('Write a review!'), 
                 ['controller' => 'Reviews', 'action' => 'add', $film->id, $film->title]) ?> </li>
+    <?php } ?>       
     </ul>
 </nav>
 <div class="films view large-9 medium-8 columns content">

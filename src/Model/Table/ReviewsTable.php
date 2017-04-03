@@ -34,7 +34,6 @@ class ReviewsTable extends Table
         parent::initialize($config);
 
         $this->setTable('reviews');
-        //$this->setDisplayField('title');
         $this->setDisplayField('body');
         $this->setPrimaryKey('id');
 
@@ -69,11 +68,9 @@ class ReviewsTable extends Table
         $validator
             ->add('rating', 'valid', [
                 'rule' => 'numeric',
-                // this is the weeknumber range
-                // maximum weeknumber is 53
+                // 5 for highest and 1 for lowest
                 'rule' => ['range', 1, 5]
                 ])
-            //->integer('rating')
             ->requirePresence('rating', 'create')
             ->notEmpty('rating');
 
@@ -81,6 +78,7 @@ class ReviewsTable extends Table
             ->dateTime('created_at')
             ->allowEmpty('created_at');
 
+        // not yet in use
         $validator
             ->boolean('is_public')
             ->allowEmpty('is_public');

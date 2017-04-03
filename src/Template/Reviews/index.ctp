@@ -22,8 +22,6 @@ $isFilmReviewer = $session->read('isFilmReviewer');
                 <th scope="col" style="text-align: center;"><?= $this->Paginator->sort('rating') ?></th>
                 <th scope="col" colspan="3"><?= $this->Paginator->sort('film_id') ?></th>
                 <th scope="col"><?= __('Reviewed by') ?></th>
-                <!--<th scope="col"><?= $this->Paginator->sort('user_id') ?></th>-->   
-                <!--<th scope="col"><?= $this->Paginator->sort('is_public') ?></th>-->
                 
             </tr>
         </thead>
@@ -34,9 +32,7 @@ $isFilmReviewer = $session->read('isFilmReviewer');
                 <td><?= $this->Html->link(__('Read review'), ['action' => 'view', $review->id]) ?></td>
                 <td style="text-align: center;"><?= $this->Number->format($review->rating) ?></td> 
                 <td colspan="3"><?= $review->has('film') ? $this->Html->link($review->film->title, ['controller' => 'Films', 'action' => 'view', $review->film->id]) : '' ?></td>
-                <td><?= $review->has('user') ? $this->Html->link($review->user->username, ['controller' => 'Users', 'action' => 'view', $review->user->id]) : '' ?></td>
-                <!--<td><?= h($review->is_public) ?></td>-->
-                
+                <td><?= $review->has('user') ? $this->Html->link($review->user->username, ['controller' => 'Users', 'action' => 'view', $review->user->id]) : '' ?></td>             
             </tr>
             <?php endforeach; ?>
         </tbody>

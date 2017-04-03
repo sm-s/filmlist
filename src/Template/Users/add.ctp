@@ -14,7 +14,6 @@
             echo $this->Form->control('username');
             echo $this->Form->control('email');
             echo $this->Form->control('password');
-            //echo $this->Form->control('created_at', ['empty' => true]);
             echo $this->Form->input('roles._ids', ['options' => $roles, 
                 'type' => 'select', 'multiple' => 'checkbox', 'default' => 4]);
         ?>

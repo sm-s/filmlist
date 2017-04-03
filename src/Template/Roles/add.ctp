@@ -12,7 +12,6 @@
         <legend><?= __('Add a new role') ?></legend>
         <?php
             echo $this->Form->control('description');
-            //echo $this->Form->control('users._ids', ['options' => $users]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
