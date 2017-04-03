@@ -37,7 +37,9 @@ class FilmsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->hasMany('Reviews', [
-            'foreignKey' => 'film_id'
+            'foreignKey' => 'film_id',
+            'dependent' => true,
+            'cascadeCallback' => true
         ]);
     }
 

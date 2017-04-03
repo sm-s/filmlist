@@ -40,7 +40,9 @@ class UsersTable extends Table
         $this->setPrimaryKey('id');
 
         $this->hasMany('Reviews', [
-            'foreignKey' => 'user_id'
+            'foreignKey' => 'user_id',
+            'dependent' => true,
+            'cascadeCallback' => true
         ]);
         $this->belongsToMany('Roles', [
             'foreignKey' => 'user_id',
