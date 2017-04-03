@@ -8,7 +8,7 @@ $isFilmReviewer = $session->read('isFilmReviewer');
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="delete">
+        <li id="delete">
             <?php if ($isAdmin || $isModerator || ($userID == $review->user_id)) { ?>
             <?= $this->Form->postLink(__('Delete this review'),
             ['action' => 'delete', $review->id],
