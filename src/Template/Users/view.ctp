@@ -21,10 +21,7 @@ $userID = $session->read('userid');
 </nav>
 <div class="users view large-9 medium-8 columns content">
   
-    <?php
-    if ($isModerator && (!($userID == $user->id))) { ?>
-    <h3><?= h($user->username) ?></h3>
-    <?php } 
+    <?php  
     if ($isAdmin || $isModerator || ($userID == $user->id)) { ?>
     <h3><?= h($user->username) ?></h3>
     <table class="vertical-table">
@@ -55,8 +52,7 @@ $userID = $session->read('userid');
             <?= h($user->username) ?></h4>
             <table cellpadding="0" cellspacing="0">
                 <tr>
-                    <th scope="col"><?= __('Created At') ?></th>                    
-                    <th scope="col"><?= __('Film') ?></th>
+                    <th scope="col"><?= __('Created on') ?></th>                    
                     <th scope="col"><?= __('Rating') ?></th>
                     <th scope="col" colspan="2"><?= __('Review') ?></th>
                     <th scope="col"></th>
@@ -64,7 +60,6 @@ $userID = $session->read('userid');
                 <?php foreach ($user->reviews as $reviews): ?>
                 <tr>
                     <td><?= h($reviews->created_at->format('d.m.Y')) ?></td>
-                    <td><?= h($reviews->film_id) ?></td>
                     <td><?= h($reviews->rating) ?></td>
                     <td colspan="2"><?= h($reviews->body) ?></td>
                     <td><?= $this->Html->link(__('Read review'), ['controller' => 'Reviews', 'action' => 'view', $reviews->id]) ?></td>

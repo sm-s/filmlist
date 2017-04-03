@@ -46,14 +46,14 @@ $isFilmReviewer = $session->read('isFilmReviewer');
                 <th scope="col"><?= __('Date') ?></th>
                 <th scope="col"><?= __('Rating') ?></th>
                 <th scope="col" colspan="5"><?= __('Review') ?></th>
-                <!--<th scope="col"><?= __('User Id') ?></th>-->
+                <th scope="col"></th>
             </tr>
             <?php foreach ($film->reviews as $reviews): ?>
             <tr>
                 <td><?= h($reviews->created_at->format('d.m.Y')) ?></td>
                 <td><?= h($reviews->rating) ?></td>
-                <td colspan="5"><?= $this->Html->link(__(h($reviews->body)), ['controller' => 'Reviews', 'action' => 'view', $reviews->id]) ?></td>
-                <!--<td><?= h($reviews->user_id) ?></td>-->
+                <td colspan="5"><?= h($reviews->body) ?></td>
+                <td ><?= $this->Html->link(__('Read review'), ['controller' => 'Reviews', 'action' => 'view', $reviews->id]) ?></td>
             </tr>
             <?php endforeach; ?>
         </table>
