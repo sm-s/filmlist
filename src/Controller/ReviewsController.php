@@ -148,7 +148,8 @@ class ReviewsController extends AppController
                 // users can edit their own reviews
                 $id = $this->request->session()->read('userid');
                 if ($id === $user['id']) {
-                    if ($this->request->getParam('action') === 'edit') {
+                    if ($this->request->getParam('action') === 'edit' || 
+                            $this->request->getParam('action') === 'delete') {
                         return True;    
                     }
                 } 

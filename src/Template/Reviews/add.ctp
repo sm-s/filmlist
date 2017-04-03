@@ -20,9 +20,7 @@ echo $this->Html->script('jquery-ui.min');
             <?php
             echo $this->Form->control('rating', ['title' => '5 is the highest, 1 the lowest', 'empty' => true, 
                 'options' => array('5' => '5', '4' => '4', '3' => '3', '2' => '2', '1' => '1')]);
-            //echo $this->Form->input('rating', array('type' => 'radio', 
-            //    'options' => array('1' => '*', '2' => '**', '3' => '***', '4' => '****', '5' => '*****')));
-            echo $this->Form->textarea('body', ['title' => 'Write the review here (optional)']);
+            echo $this->Form->textarea('body', ['title' => 'Write your review here (optional)']);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
@@ -33,4 +31,3 @@ echo $this->Html->script('jquery-ui.min');
     $( document ).tooltip();
   } );
   </script>
- 
