@@ -58,7 +58,7 @@ $userID = $session->read('userid');
                     <th scope="col"><?= __('Created At') ?></th>                    
                     <th scope="col"><?= __('Film') ?></th>
                     <th scope="col"><?= __('Rating') ?></th>
-                    <th scope="col" colspan="2"><?= __('Body') ?></th>
+                    <th scope="col" colspan="2"><?= __('Review') ?></th>
                     <th scope="col"></th>
                 </tr>
                 <?php foreach ($user->reviews as $reviews): ?>

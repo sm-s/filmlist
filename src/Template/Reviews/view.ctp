@@ -38,7 +38,7 @@ $isFilmReviewer = $session->read('isFilmReviewer');
             <td><?= $this->Number->format($review->rating) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Body') ?></th>
+            <th scope="row"><?= __('Review') ?></th>
             <td><?= h($review->body) ?></td>
         </tr>
     </table>

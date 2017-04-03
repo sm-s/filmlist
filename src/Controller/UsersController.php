@@ -136,7 +136,7 @@ class UsersController extends AppController
             if ($this->request->data['password'] == $this->request->data['newPassword']) {
                 if ($this->Users->save($user)) {
                     $this->Flash->success(__('The user has been saved.'));
-                    return $this->redirect(['action' => 'index']);
+                    return $this->redirect(['action' => 'view', $id]);
                 }
                 else {
                     $this->Flash->error(__('The user could not be saved. Please, try again.'));
