@@ -116,11 +116,10 @@ class UsersController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+                $this->Flash->success(__('The profile has been saved.'));
+                return $this->redirect(['action' => 'view', $id]);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            $this->Flash->error(__('The profile could not be saved. Please, try again.'));
         }
         $roles = $this->Users->Roles->find('list', ['limit' => 200]);
         $this->set(compact('user', 'roles'));
@@ -135,11 +134,11 @@ class UsersController extends AppController
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->request->data['password'] == $this->request->data['newPassword']) {
                 if ($this->Users->save($user)) {
-                    $this->Flash->success(__('The user has been saved.'));
+                    $this->Flash->success(__('The password has been saved.'));
                     return $this->redirect(['action' => 'view', $id]);
                 }
                 else {
-                    $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                    $this->Flash->error(__('The password could not be saved. Please, try again.'));
                 }
             }    
             else {
