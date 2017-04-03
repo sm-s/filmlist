@@ -10,7 +10,7 @@ $isModerator = $session->read('isModerator')
         ;?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-    <?php if($isAdmin) { ?>
+    <?php if ($isAdmin) { ?>
         <li><?= $this->Html->link(__('Add a new user'), ['action' => 'add']) ?></li>
     <?php } ?>
     </ul>

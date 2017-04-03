@@ -9,7 +9,9 @@ $isAdmin = $session->read('isAdmin');
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li><?= $this->Html->link(__('Add a new role'), ['action' => 'add']) ?></li>
+        <?php if ($isAdmin) { ?>
+            <li><?= $this->Html->link(__('Add a new role'), ['action' => 'add']) ?></li>
+        <?php } ?>      
     </ul>
 </nav>
 <div class="roles index large-9 medium-8 columns content">

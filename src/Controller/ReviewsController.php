@@ -124,6 +124,7 @@ class ReviewsController extends AppController
     
     public function isAuthorized($user)
     {
+        // id that corresponds to the role
         $admin = 1;
         $moderator = 3;
         $filmReviewer = 4;
@@ -139,13 +140,13 @@ class ReviewsController extends AppController
                 if ($temp['role_id'] === $admin || $temp['role_id'] === $moderator) {
                     return True;
                 }
-                // film reviewers
+                // film reviewers add reviews
                 if (($temp['role_id'] === $filmReviewer)) {
                     if ($this->request->getParam('action') === 'add') {
                         return True;
                     }
                 }
-                // users can edit their own reviews
+                // users can edit and delete their own reviews
                 $id = $this->request->session()->read('userid');
                 if ($id === $user['id']) {
                     if ($this->request->getParam('action') === 'edit' || 
